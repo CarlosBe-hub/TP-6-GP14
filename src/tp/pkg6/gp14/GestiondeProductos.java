@@ -1,16 +1,29 @@
 
 package tp.pkg6.gp14;
-import javax.swing.JFrame;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class GestiondeProductos extends javax.swing.JInternalFrame {
+    
+private DefaultTableModel mt = new DefaultTableModel();
 
     /**
-     * Creates new form GestiondeProductos
+     * 
      */
     public GestiondeProductos() {
         initComponents();
+        
+        String ids [] = {"Nombre","Categoria","Precio"};
+        
+        mt.setColumnIdentifiers(ids);
+        
+        Jtable1.setModel(mt);
+        
+        ncombobox();
     }
+    
     
       
 
@@ -28,11 +41,11 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jCombocategoria = new javax.swing.JComboBox<>();
+        jTFnombre = new javax.swing.JTextField();
+        nuevoprecio = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Jtabla = new javax.swing.JTable();
+        Jtable1 = new javax.swing.JTable();
         Jbcarrito = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -65,25 +78,29 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Precio:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        Jtabla.setForeground(new java.awt.Color(255, 255, 255));
-        Jtabla.setModel(new javax.swing.table.DefaultTableModel(
+        Jtable1.setForeground(new java.awt.Color(0, 153, 204));
+        Jtable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nombre", "Categoria", "Precio"
+
             }
         ));
-        jScrollPane2.setViewportView(Jtabla);
+        Jtable1.setGridColor(new java.awt.Color(0, 153, 255));
+        jScrollPane2.setViewportView(Jtable1);
 
         Jbcarrito.setForeground(new java.awt.Color(0, 0, 0));
         Jbcarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tp/pkg6/gp14/imagenes/icon carrito.png"))); // NOI18N
         Jbcarrito.setText("Agregar");
+        Jbcarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbcarritoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,16 +114,16 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 120, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jCombocategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, 120, Short.MAX_VALUE)
+                    .addComponent(nuevoprecio, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTFnombre, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(43, 43, 43)
                 .addComponent(Jbcarrito)
                 .addGap(51, 51, 51))
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -129,21 +146,21 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCombocategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Jbcarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nuevoprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -151,12 +168,32 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JbcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbcarritoActionPerformed
+     try{
+        String Nombre = jTFnombre.getText();
+    double nuevoPrecio = Double.parseDouble(nuevoprecio.getText());
+    Object Categoria = jCombocategoria.getSelectedItem(); 
+    mt.addRow(new Object[] {Nombre, Categoria, nuevoPrecio});
+    jTFnombre.setText("");
+    nuevoprecio.setText("");
+    JOptionPane.showMessageDialog(this, "Producto agregado exitosamente!");
+    
+    } catch(NumberFormatException e){
+            
+            JOptionPane.showMessageDialog(this, "Error en el formato , ¡Por favor ingrese números validos!","ERROR", JOptionPane.ERROR_MESSAGE);
+        
+        } catch(Exception e){
+        JOptionPane.showMessageDialog(this, "Surgio un error inesperado");
+        }
+     
+    }//GEN-LAST:event_JbcarritoActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Jbcarrito;
-    private javax.swing.JTable Jtabla;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTable Jtable1;
+    private javax.swing.JComboBox<String> jCombocategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -164,10 +201,16 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTFnombre;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nuevoprecio;
     // End of variables declaration//GEN-END:variables
 
+    public void ncombobox(){
+        jCombocategoria.addItem("Almacen");
+        jCombocategoria.addItem("Perfumeria");
+        jCombocategoria.addItem("Mecanica");
+        jCombocategoria.addItem("Farmacia");
+    }
     
 }
