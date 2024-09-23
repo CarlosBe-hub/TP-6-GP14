@@ -42,7 +42,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setForeground(new java.awt.Color(0, 153, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tp/pkg6/gp14/imagenes/servicio.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tp/pkg6/gp14/imagenes/carrito.png"))); // NOI18N
 
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);

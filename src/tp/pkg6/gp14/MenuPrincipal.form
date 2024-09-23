@@ -125,7 +125,7 @@
               <Color blue="cc" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/tp/pkg6/gp14/imagenes/servicio.png"/>
+              <Image iconType="3" name="/tp/pkg6/gp14/imagenes/carrito.png"/>
             </Property>
           </Properties>
         </Component>

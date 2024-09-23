@@ -1,6 +1,7 @@
 
 package tp.pkg6.gp14;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 public class GestiondeProductos extends javax.swing.JInternalFrame {
     
 private DefaultTableModel mt = new DefaultTableModel();
-
+private HashSet<Producto> productosSet = new HashSet<>();
     /**
      * 
      */
@@ -173,14 +174,24 @@ private DefaultTableModel mt = new DefaultTableModel();
         String Nombre = jTFnombre.getText();
     double nuevoPrecio = Double.parseDouble(nuevoprecio.getText());
     Object Categoria = jCombocategoria.getSelectedItem(); 
-    mt.addRow(new Object[] {Nombre, Categoria, nuevoPrecio});
+     Producto nuevoProducto = new Producto(Nombre, Categoria.toString(), nuevoPrecio);
+     if (productosSet.contains(nuevoProducto)) {
+                JOptionPane.showMessageDialog(this, "El producto ya esta agregado en la lista", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else {
+                productosSet.add(nuevoProducto);
+                mt.addRow(new Object[] {Nombre, Categoria, nuevoPrecio});
+                jTFnombre.setText("");
+                nuevoprecio.setText("");
+                JOptionPane.showMessageDialog(this, "Producto agregado exitosamente!");
+            }
+     
     jTFnombre.setText("");
     nuevoprecio.setText("");
-    JOptionPane.showMessageDialog(this, "Producto agregado exitosamente!");
+ 
     
     } catch(NumberFormatException e){
             
-            JOptionPane.showMessageDialog(this, "Error en el formato , ¡Por favor ingrese números validos!","ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en el formato , ¡Por favor ingrese numeros validos!","ERROR", JOptionPane.ERROR_MESSAGE);
         
         } catch(Exception e){
         JOptionPane.showMessageDialog(this, "Surgio un error inesperado");
@@ -212,5 +223,52 @@ private DefaultTableModel mt = new DefaultTableModel();
         jCombocategoria.addItem("Mecanica");
         jCombocategoria.addItem("Farmacia");
     }
-    
-}
+   public class Producto {
+        private String nombre;
+        private String categoria;
+        private double precio;
+
+        public Producto(String nombre, String categoria, double precio) {
+            this.nombre = nombre;
+            this.categoria = categoria;
+            this.precio = precio;
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+
+        public String getCategoria() {
+            return categoria;
+        }
+
+        public double getPrecio() {
+            return precio;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Producto producto = (Producto) o;
+            return Double.compare(producto.precio, precio) == 0 &&
+                   nombre.equals(producto.nombre) &&
+                   categoria.equals(producto.categoria);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(nombre, categoria, precio);
+        }
+
+        @Override
+        public String toString() {
+            return "Producto{" +
+                   "nombre='" + nombre + '\'' +
+                   ", categoria='" + categoria + '\'' +
+                   ", precio=" + precio +
+                   '}';
+        }
+    }
+} 
+
